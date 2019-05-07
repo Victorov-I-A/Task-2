@@ -1,6 +1,0 @@
-     inputU.txt(number of lines - 5.0):
-First line
-Second line
-Third line
-Fourth line
-fifth line

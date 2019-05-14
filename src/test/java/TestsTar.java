@@ -6,13 +6,11 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-public class TestsTar
-{
+public class TestsTar {
     private Tar tar;
 
 
-    private void assertFileContent(String inputFile1, String inputFile2) throws FileNotFoundException
-    {
+    private void assertFileContent(String inputFile1, String inputFile2) throws FileNotFoundException {
         Scanner scanner1 = new Scanner(new File(inputFile1));
         Scanner scanner2 = new Scanner(new File(inputFile2));
 
@@ -29,37 +27,35 @@ public class TestsTar
     }
 
     @After
-    public void reset()
-    {
+    public void reset() {
         tar = null;
     }
 
     @Test
-    public void testU() throws FileNotFoundException
-    {
-        tar = new Tar(new String[]{"inputU.txt"});
-        try
-        {
+    public void testU() throws FileNotFoundException {
+        tar = new Tar(new String[]{"files\\InputFiles\\inputU.txt"});
+        try {
             tar.tar("-u");
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        assertFileContent("output1.txt", "UTest1.txt");
-        assertFileContent("output2.txt", "UTest2.txt");
+        assertFileContent("files\\OutputFiles\\output1.txt", "files\\OutputFiles\\UTest1.txt");
+        assertFileContent("files\\OutputFiles\\output2.txt", "files\\OutputFiles\\UTest2.txt");
     }
 
     @Test
-    public void testOut() throws FileNotFoundException
-    {
-        tar = new Tar(new String[]{"inputOut1.txt", "inputOut2.txt", "inputOut3.txt"});
-        try
-        {
+    public void testOut() throws FileNotFoundException {
+        tar = new Tar(new String[]{
+                "files\\InputFiles\\inputOut1.txt",
+                "files\\InputFiles\\inputOut2.txt",
+                "files\\InputFiles\\inputOut3.txt",
+                "files\\OutputFiles\\output3.txt"
+        });
+        try {
             tar.tar("-out");
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        assertFileContent("output3.txt", "OutTest.txt");
+        assertFileContent("files\\OutputFiles\\output3.txt", "files\\OutputFiles\\OutTest.txt");
     }
 }

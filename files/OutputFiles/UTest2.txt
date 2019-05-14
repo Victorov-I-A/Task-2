@@ -1,0 +1,6 @@
+     files\InputFiles\inputU.txt(number of lines - 5.0):
+sixth line
+seventh line
+eighth line
+ninth line
+tenth line

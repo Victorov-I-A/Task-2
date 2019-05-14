@@ -7,8 +7,9 @@ import org.kohsuke.args4j.CmdLineParser;
 
 import java.io.IOException;
 
-public class TarLauncher
-{
+public class TarLauncher {
+    @Argument(required = true, metaVar = "InputNames", usage = "Input file names")
+    private String[] inputFileName;
 
     @Option(name = "-u")
     private boolean isU;
@@ -16,46 +17,43 @@ public class TarLauncher
     @Option(name = "-out")
     private boolean isOut;
 
-    @Argument(required = true, metaVar = "InputName", usage = "Input file name")
-    private String[] inputFileName;
 
-    public static void main(String[] args)
-    {
-        new TarLauncher().launch(new String[]{"-u", "inputU.txt"});
+    public static void main(String[] args) {
+        new TarLauncher().launch(args);
     }
 
-    private void launch(String[] args)
-    {
+    private void launch(String[] args) {
         CmdLineParser parser = new CmdLineParser(this);
 
-        try
-        {
+        try {
             parser.parseArgument(args);
         }
-        catch (CmdLineException e)
-        {
+        catch (CmdLineException e) {
             System.err.println(e.getMessage());
             parser.printUsage(System.err);
             return;
         }
 
-        if (isU == isOut)
-        {
+        if (isU == isOut) {
             System.err.println("key limit exceeded");
             return;
         }
 
         Tar tar = new Tar(inputFileName);
 
-        try
-        {
-          if (isU = true)
-              tar.tar("-u");
-          if (isOut = true)
-              tar.tar("-out");
+        try {
+            if (isOut = true) {
+                if (!args[args.length - 2].equals("-out")) {
+                    System.err.println("incorrect entered arguments");
+                    return;
+                }
+                    tar.tar("-out");
+            }
+            else {
+                tar.tar("-u");
+            }
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }

@@ -1,0 +1,13 @@
+     files\InputFiles\inputOut1.txt(number of lines - 4):
+First line
+Second line
+Third line
+Fourth line
+     files\InputFiles\inputOut2.txt(number of lines - 3):
+fifth line
+sixth line
+seventh line
+     files\InputFiles\inputOut3.txt(number of lines - 3):
+eighth line
+ninth line 
+tenth line
